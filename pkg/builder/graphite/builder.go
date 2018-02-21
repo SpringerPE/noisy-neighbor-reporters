@@ -3,7 +3,6 @@ package builder
 import (
 	"fmt"
 	"log"
-	"sort"
 	"strings"
 
 	nn_collector "code.cloudfoundry.org/noisy-neighbor-nozzle/pkg/collector"
@@ -78,15 +77,11 @@ func (gp *GraphiteBuilder) BuildPoints(timestamp int64) ([]graphite.Metric, erro
 	for _, c := range top {
 		gi := GUIDIndex(c.guidIndex)
 
-		metricName := gp.metricsPrefix
-
 		orgSpaceAppName, ok := appInfo[nn_collector.AppGUID(gi.GUID())]
 
 		if ok {
 
-			metricName += fmt.Printf(".%s.%s", orgSpaceAppName, gi.Index())
-
-			fmt.Println(metricName)
+			metricName := fmt.Sprintf("%s.%s.%s", gp.metricsPrefix, orgSpaceAppName, gi.Index())
 
 			graphitePoints = append(graphitePoints, graphite.Metric{
 				Name:      metricName,

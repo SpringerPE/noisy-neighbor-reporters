@@ -15,8 +15,8 @@ type Config struct {
 	AccumulatorAddr string        `env:"ACCUMULATOR_ADDR, required"`
 	ClientID        string        `env:"CLIENT_ID,        required"`
 	ClientSecret    string        `env:"CLIENT_SECRET,    required, noreport"`
-	GraphiteHost    string        `env:"GRAPHITE_HOST,  required"`
-	GraphitePort    int           `env:"GRAPHITE_PORT", required"`
+	GraphiteHost    string        `env:"METRICS_HOST,  required"`
+	GraphitePort    int           `env:"METRICS_PORT", required"`
 	GraphitePrefix  string        `env:"GRAPHITE_PREFIX,  required"`
 	SkipCertVerify  bool          `env:"SKIP_CERT_VERIFY"`
 	ReportInterval  time.Duration `env:"REPORT_INTERVAL"`

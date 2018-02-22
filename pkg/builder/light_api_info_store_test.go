@@ -255,6 +255,18 @@ func appsResponse() string {
 	  "space": "space2",
 	  "org": "org2",
 	  "running": false
+	},
+	{
+	"name": "app3",
+	"meta": {
+	  "error": true,
+	  "type": "CFResponseError",
+	  "message": "Code 200003: CF-AppStoppedStatsError - Could not fetch stats for stopped app: <name of app here>",
+	  "backtrace": [
+	    "etc...", "etc...", "etc..."
+	  ]
+	}
+
 	}
 ]
 `

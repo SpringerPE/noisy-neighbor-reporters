@@ -51,10 +51,13 @@ func (s *HTTPAppInfoStore) Lookup(guids []string) (
 
 	res := make(map[nn_collector.AppGUID]nn_collector.AppInfo)
 	for _, app := range apps {
-		res[app.GUID] = nn_collector.AppInfo{
-			Name:  app.Name,
-			Space: app.Space,
-			Org:   app.Org,
+
+		if app.GUID != "" {
+			res[app.GUID] = nn_collector.AppInfo{
+				Name:  app.Name,
+				Space: app.Space,
+				Org:   app.Org,
+			}
 		}
 	}
 

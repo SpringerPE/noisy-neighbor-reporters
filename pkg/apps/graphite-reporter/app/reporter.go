@@ -3,7 +3,6 @@ package app
 import (
 	"log"
 	"net/http"
-	//	"strconv"
 	"time"
 
 	"code.cloudfoundry.org/noisy-neighbor-nozzle/pkg/auth"
@@ -52,11 +51,6 @@ func NewReporter(cfg Config) *reporter.GraphiteReporter {
 
 	b := graphite_builder.NewGraphiteBuilder(c, cache, cfg.GraphitePrefix)
 
-	//graphitePort, err := strconv.Atoi(cfg.GraphitePort)
-	/*	if err != nil {
-			log.Fatalf("Please make sure that graphite port is a numeric value, %s", err)
-		}
-	*/
 	graphiteClient, err := graphite.NewGraphite(cfg.GraphiteHost, cfg.GraphitePort)
 	if err != nil {
 		log.Fatalf("Error while connecting to graphite %s:%s: %s", cfg.GraphiteHost, cfg.GraphitePort, err)

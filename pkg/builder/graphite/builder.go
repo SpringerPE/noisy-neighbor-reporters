@@ -79,10 +79,9 @@ func (gp *GraphiteBuilder) BuildPoints(timestamp int64) ([]graphite.Metric, erro
 
 		orgSpaceAppName, ok := appInfo[nn_collector.AppGUID(gi.GUID())]
 
-		if ok {
+		if ok && checkOrgSpaceAppNameIsNotEmpty(orgSpaceAppName) {
 
 			metricName := fmt.Sprintf("%s.%s.%s", gp.metricsPrefix, orgSpaceAppName, gi.Index())
-
 			graphitePoints = append(graphitePoints, graphite.Metric{
 				Name:      metricName,
 				Value:     fmt.Sprintf("%d", c.value),
@@ -96,6 +95,15 @@ func (gp *GraphiteBuilder) BuildPoints(timestamp int64) ([]graphite.Metric, erro
 	}
 
 	return graphitePoints, nil
+}
+
+func checkOrgSpaceAppNameIsNotEmpty(orgSpaceAppName nn_collector.AppInfo) bool {
+
+	if orgSpaceAppName.Name != "" && orgSpaceAppName.Space != "" && orgSpaceAppName.Org != "" {
+		return true
+	}
+
+	return false
 }
 
 type count struct {

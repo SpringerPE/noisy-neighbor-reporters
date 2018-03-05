@@ -90,7 +90,7 @@ func (gp *GraphiteBuilder) BuildPoints(timestamp int64) ([]graphite.Metric, erro
 
 		} else {
 
-			log.Printf("%s: failed to extract metric metadata from API lookup", c)
+			log.Printf("%v: failed to extract metric metadata from API lookup", c)
 		}
 	}
 
